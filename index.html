@@ -31,5 +31,22 @@
         <p>Tho not many might see or read this, I hereby leave a confession about who and what I am.</p>
         <p>actually there is no confession</p>        
     </div>
+
+    <!-- Watson Assistant Chat Script -->
+    <script>
+      window.watsonAssistantChatOptions = {
+        integrationID: "58c1f04a-5164-4400-8ae5-16224be6d559", // The ID of this integration.
+        region: "au-syd", // The region your integration is hosted in.
+        serviceInstanceID: "91642f9a-f6a6-4e50-a512-72a14329ef9e", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+      };
+      setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + 
+        (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+      });
+    </script>
+
 </body>
 </html>
