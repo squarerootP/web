@@ -48,8 +48,14 @@
         }
 
         .logo {
-            width: 200px;
+            width: 150px;
             height: auto;
+        }
+
+        .additional-logo {
+            width: 150px;
+            height: auto;
+            margin-left: 1rem;
         }
 
         .header-title {
@@ -302,6 +308,148 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+        /* Add to your existing style section */
+        .search-container {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center; /* Center the search container */
+        }
+
+        #memberSearch {
+            flex: 0 1 920px; /* Set a fixed width */
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #positionFilter {
+            flex: 0 1 200px; /* Set a fixed width */
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .highlight {
+            background-color: rgba(255, 215, 0, 0.2);
+            border-radius: 2px;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        /* Theme toggle styles */
+        .theme-toggle {
+            background: var(--dark-color);
+            color: var(--light-color);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .dark-icon, .light-icon {
+            position: absolute;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dark-theme .dark-icon {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .dark-theme .light-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .light-theme .light-icon {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .light-theme .dark-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Dark theme variables */
+        body.dark-theme {
+            --primary-yellow: #FFD700;
+            --dark-color: #121212;
+            --light-color: #f8f8f8;
+            --accent-color: #333333;
+            --text-dark: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.3);
+            background-color: #1e1e1e;
+        }
+
+        .dark-theme .member-card {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-theme .modal-content {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        .dark-theme .member-description {
+            color: #e0e0e0;
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-yellow);
+            color: var(--dark-color);
+            border: none;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -350,56 +498,111 @@
                 padding: 1.5rem;
             }
         }
+        /* Animation effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .members-grid .member-card {
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
             <img src="images\university_logo.png" alt="University Logo" class="logo">
+            <img src="images\logo_fel.png" alt="Additional Logo" class="additional-logo">
             <div class="header-title">
                 <h1>FPTU English Club</h1>
                 <h2>Hall of Fame</h2>
             </div>
             <div style="width: 100px;"></div> <!-- Spacer for balance -->
+            <button id="themeToggle" class="theme-toggle">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
         </div>
     </header>
 
     <div class="semester-tabs">
         <div class="tabs">
-            <button class="tab-btn active" data-semester="fall2023">Fall 2023</button>
+            <button class="tab-btn active" data-semester="spring2025">Spring 2025</button>
             <button class="tab-btn" data-semester="spring2023">Spring 2023</button>
             <button class="tab-btn" data-semester="fall2022">Fall 2022</button>
             <button class="tab-btn" data-semester="spring2022">Spring 2022</button>
         </div>
     </div>
 
+    <div class="search-container">
+        <input type="text" id="memberSearch" placeholder="Search members by name or title...">
+        <select id="positionFilter">
+            <option value="">All Positions</option>
+            <option value="President">President</option>
+            <option value="Vice President">Vice President</option>
+            <option value="Treasurer">Treasurer</option>
+            <option value="Secretary">Secretary</option>
+            <option value="Events Coordinator">Events Coordinator</option>
+            <option value="Marketing Director">Marketing Director</option>
+            <option value="Research Lead">Research Lead</option>
+            <option value="Community Outreach">Community Outreach</option>
+        </select>
+    </div>
+
     <main>
         <!-- Fall 2023 Section -->
-        <section id="fall2023" class="semester-section active">
+        <section id="spring2025" class="semester-section active">
             <h3 class="semester-title">Fall 2023 Outstanding Members</h3>
             <div class="members-grid">
                 <!-- Member 1 -->
                 <div class="member-card" data-member="van-phong">
-                    <img src="images/member1.jpg" alt="Van Phong" class="profile-pic">
-                    <h3 class="member-name">Van Phong</h3>
-                    <div class="member-title">Vice President</div>
-                    <p class="member-description">Cóc vàng 2 kì liên tiếp nha các mom.</p>
+                    <img src="images/member1.jpg" alt="Vũ Bão" class="profile-pic">
+                    <h3 class="member-name">Phan Huỳnh Vũ Bão</h3>
+                    <div class="member-title">President</div>
+                    <p class="member-description">Chủ tịch nhiều kỳ nhất nè các mom.</p>
                 </div>
 
                 <!-- Member 2 -->
                 <div class="member-card" data-member="john-smith">
-                    <img src="images/member2.jpg" alt="John Smith" class="profile-pic">
-                    <h3 class="member-name">John Smith</h3>
+                    <img src="images/member2.jpg" alt="Bùi Ánh Ngọc" class="profile-pic">
+                    <h3 class="member-name">Bùi Ánh Ngọc</h3>
                     <div class="member-title">Vice President</div>
-                    <p class="member-description">Organized the annual conference that attracted over 500 participants from across the country.</p>
+                    <p class="member-description">Sắp ra trường rồi các mom.</p>
                 </div>
 
                 <!-- Member 3 -->
                 <div class="member-card" data-member="emily-johnson">
-                    <img src="images/member3.jpg" alt="Emily Johnson" class="profile-pic">
-                    <h3 class="member-name">Emily Johnson</h3>
+                    <img src="images/member3.jpg" alt="Trần Quang Đạt" class="profile-pic">
+                    <h3 class="member-name">Trần Quang Đạt</h3>
                     <div class="member-title">Treasurer</div>
-                    <p class="member-description">Secured $50,000 in funding through grants and sponsorships for club activities.</p>
+                    <p class="member-description">Kỳ đóng 5 chục nha các mom.</p>
+                </div>
+                <!-- Member 4 -->
+                <div class="member-card" data-member="michael-brown">
+                    <img src="images/member4.jpg" alt="Michael Brown" class="profile-pic">
+                    <h3 class="member-name">Mỹ Ngọc</h3>
+                    <div class="member-title">Secretary</div>
+                    <p class="member-description">Chụp ảnh nha các mom.</p>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="member-card" data-member="sarah-wilson">
+                    <img src="images/member5.jpg" alt="Sarah Wilson" class="profile-pic">
+                    <h3 class="member-name">Nguyễn Văn Phong</h3>
+                    <div class="member-title">Vice President</div>
+                    <p class="member-description">Ghệ của bé Khoa nha các mom.</p>
+                </div>
+                <!-- Member 6 -->
+                <div class="member-card" data-member="david-lee">
+                    <img src="images/member6.jpg" alt="Lê Nguyễn Bảo Nghi" class="profile-pic">
+                    <h3 class="member-name">Lê Nguyễn Bảo Nghi</h3>
+                    <div class="member-title">Secretary</div>
+                    <p class="member-description">Thư ký nhiều kỳ nhất nha các mom.</p>
                 </div>
             </div>
         </section>
@@ -422,6 +625,13 @@
                     <h3 class="member-name">Sarah Wilson</h3>
                     <div class="member-title">Secretary</div>
                     <p class="member-description">Implemented digital systems that improved club communication and documentation.</p>
+                </div>
+                <!-- Member 6 -->
+                <div class="member-card" data-member="david-lee">
+                    <img src="images/member6.jpg" alt="Lê Nguyễn Bảo Nghi" class="profile-pic">
+                    <h3 class="member-name">Lê Nguyễn Bảo Nghi</h3>
+                    <div class="member-title">Secretary</div>
+                    <p class="member-description">Thư ký nhiều kỳ nhất nha các mom.</p>
                 </div>
             </div>
         </section>
@@ -502,15 +712,15 @@
         // Member data (in a real application, this would come from a database or API)
         const memberData = {
             'van-phong': {
-                name: 'Van Phong',
-                title: 'Vice President',
+                name: 'Phan Huỳnh Vũ Bão',
+                title: 'President',
                 image: 'images/member1.jpg',
                 achievements: 'Led the club to win the national championship in 2023. Expanded membership by 200% through innovative recruitment strategies.',
                 contributions: 'Established the annual leadership retreat. Created a mentorship program connecting club alumni with current members.',
                 background: 'Jane is a senior majoring in Business Administration with a minor in Leadership Studies. She joined the club in her freshman year and has held various leadership positions.'
             },
             'john-smith': {
-                name: 'John Smith',
+                name: 'Bùi Ánh Ngọc',
                 title: 'Vice President',
                 image: 'images/member2.jpg',
                 achievements: 'Organized the annual conference that attracted over 500 participants from across the country. Secured keynote speakers from Fortune 500 companies.',
@@ -518,7 +728,7 @@
                 background: 'John is a junior studying Computer Science with a focus on AI. He has been recognized by the university for his exceptional leadership abilities.'
             },
             'emily-johnson': {
-                name: 'Emily Johnson',
+                name: 'Trần Quang ĐạtĐạt',
                 title: 'Treasurer',
                 image: 'images/member3.jpg',
                 achievements: 'Secured $50,000 in funding through grants and sponsorships for club activities. Implemented a transparent budgeting system.',
@@ -526,16 +736,16 @@
                 background: 'Emily is a senior majoring in Finance and Economics. She has interned at several prestigious financial institutions and brings professional expertise to her role.'
             },
             'michael-brown': {
-                name: 'Michael Brown',
-                title: 'Events Coordinator',
+                name: 'Mỹ Ngọc (không biết họhọ)',
+                title: 'Secretary',
                 image: 'images/member4.jpg',
                 achievements: 'Created the signature event series that became a university tradition. Increased event attendance by 150% through strategic marketing.',
                 contributions: 'Developed a comprehensive event planning guide. Trained a team of 15 event volunteers who continue to support club activities.',
                 background: 'Michael is a junior studying Marketing with a minor in Event Management. He has experience working with major event planning companies.'
             },
             'sarah-wilson': {
-                name: 'Sarah Wilson',
-                title: 'Secretary',
+                name: 'Nguyễn Văn Phong',
+                title: 'Vice President',
                 image: 'images/member5.jpg',
                 achievements: 'Implemented digital systems that improved club communication and documentation. Created an archive of club activities dating back to its founding.',
                 contributions: "DDeveloped the club's first comprehensive handbook. Streamlined administrative processes, saving the executive team 5+ hours per week.",
@@ -641,6 +851,210 @@
                 document.body.style.overflow = ''; // Restore scrolling
             }
         });
+        // Add this after your existing JavaScript code
+
+        // Search and filter functionality
+        const searchInput = document.getElementById('memberSearch');
+        const positionFilter = document.getElementById('positionFilter');
+        const allMemberCards = document.querySelectorAll('.member-card');
+
+        function filterMembers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const positionValue = positionFilter.value.toLowerCase();
+            let hasResults = false;
+            
+            // Get the active section to only filter visible members
+            const activeSection = document.querySelector('.semester-section.active');
+            const visibleMemberCards = activeSection.querySelectorAll('.member-card');
+            
+            visibleMemberCards.forEach(card => {
+                const memberId = card.getAttribute('data-member');
+                const member = memberData[memberId];
+                const nameMatch = member.name.toLowerCase().includes(searchTerm);
+                const titleMatch = member.title.toLowerCase().includes(searchTerm);
+                const positionMatch = positionValue === '' || member.title.toLowerCase() === positionValue;
+                
+                if ((nameMatch || titleMatch) && positionMatch) {
+                    card.style.display = '';
+                    hasResults = true;
+                    
+                    // Highlight matching text in name and title
+                    const nameElement = card.querySelector('.member-name');
+                    const titleElement = card.querySelector('.member-title');
+                    
+                    if (searchTerm) {
+                        highlightText(nameElement, member.name, searchTerm);
+                        highlightText(titleElement, member.title, searchTerm);
+                    } else {
+                        nameElement.textContent = member.name;
+                        titleElement.textContent = member.title;
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Handle no results message
+            const noResultsElement = activeSection.querySelector('.no-results');
+            
+            if (!hasResults) {
+                if (!noResultsElement) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'No members match your search criteria.';
+                    activeSection.querySelector('.members-grid').appendChild(noResults);
+                }
+            } else if (noResultsElement) {
+                noResultsElement.remove();
+            }
+        }
+
+        function highlightText(element, originalText, searchTerm) {
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            const highlightedText = originalText.replace(regex, '<span class="highlight">$1</span>');
+            element.innerHTML = highlightedText;
+        }
+
+        searchInput.addEventListener('input', filterMembers);
+        positionFilter.addEventListener('change', filterMembers);
+
+        // Update filters when changing tabs
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Clear search when changing tabs
+                searchInput.value = '';
+                positionFilter.value = '';
+                
+                // Remove any highlights
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.outerHTML = el.textContent;
+                });
+                
+                // Re-run filter in case there was an active filter
+                filterMembers();
+            });
+        });
+
+        // Dark mode functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check saved preference or system preference
+        function getPreferredTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        // Apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-theme');
+                body.classList.remove('light-theme');
+                document.querySelectorAll('.semester-title').forEach(title => {
+                    title.style.color = 'var(--light-color)';
+                });
+            } else {
+                body.classList.add('light-theme');
+                body.classList.remove('dark-theme');
+                document.querySelectorAll('.semester-title').forEach(title => {
+                    title.style.color = 'var(--dark-color)';
+                });
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Initialize theme
+        const preferredTheme = getPreferredTheme();
+        applyTheme(preferredTheme);
+
+        // Theme toggle event
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+
+        // Animation for member cards
+        function animateCards() {
+            const activeSection = document.querySelector('.semester-section.active');
+            const cards = activeSection.querySelectorAll('.member-card');
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('animate-in');
+                }, 100 * index);
+            });
+        }
+
+        // Animate cards on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCards();
+        });
+
+        // Animate cards when switching tabs
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Reset animations
+                document.querySelectorAll('.member-card').forEach(card => {
+                    card.classList.remove('animate-in');
+                    card.style.opacity = '0';
+                });
+                
+                // Slight delay to let the tab switch happen first
+                setTimeout(animateCards, 50);
+            });
+        });
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Remember last selected tab
+        function saveLastTab(tabId) {
+            localStorage.setItem('lastSelectedTab', tabId);
+        }
+
+        function loadLastTab() {
+            const lastTab = localStorage.getItem('lastSelectedTab');
+            if (lastTab) {
+                const tabButton = document.querySelector(`.tab-btn[data-semester="${lastTab}"]`);
+                if (tabButton) {
+                    tabButton.click();
+                }
+            }
+        }
+
+        // Update tab selection save
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const semesterId = button.getAttribute('data-semester');
+                saveLastTab(semesterId);
+            });
+        });
+
+        // Load last selected tab on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadLastTab();
+        });
     </script>
+    <!-- Add this just before the closing body tag -->
+    <button id="backToTop" class="back-to-top hidden">↑</button>
 </body>
 </html>
