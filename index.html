@@ -64,7 +64,7 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             margin-bottom: 0.5rem;
         }
 
@@ -150,16 +150,40 @@
 
         .member-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1rem;
         }
 
         .profile-pic {
-            width: 180px;
-            height: 180px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 1rem;
             border: 4px solid var(--primary-yellow);
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-pic-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-yellow);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-pic-container:hover .profile-pic-hover {
+            opacity: 1;
         }
 
         .member-name {
@@ -516,8 +540,12 @@
 <body>
     <header>
         <div class="header-content">
-            <img src="images\university_logo.png" alt="University Logo" class="logo">
-            <img src="images\logo_fel.png" alt="Additional Logo" class="additional-logo">
+            <a href= "https://daihoc.fpt.edu.vn/" target = "_blank" title = "Visit FPTU">
+                <img src="images\university_logo.png" alt="University Logo" class="logo">
+            </a>
+            <a href="https://www.facebook.com/fptenglishclub" target="_blank" title="Visit FPTU English Club">
+                <img src="images\logo_fel.png" alt="Additional Logo" class="additional-logo">
+            </a>
             <div class="header-title">
                 <h1>FPTU English Club</h1>
                 <h2>Hall of Fame</h2>
@@ -540,7 +568,7 @@
     </div>
 
     <div class="search-container">
-        <input type="text" id="memberSearch" placeholder="Search members by name or title...">
+        <input type="text" id="memberSearch" placeholder="Điền tên hoặc chức danh để tìm mem nè mom...">
         <select id="positionFilter">
             <option value="">All Positions</option>
             <option value="President">President</option>
@@ -557,11 +585,14 @@
     <main>
         <!-- Fall 2023 Section -->
         <section id="spring2025" class="semester-section active">
-            <h3 class="semester-title">Fall 2023 Outstanding Members</h3>
+            <h3 class="semester-title">Spring 2025 Outstanding Members</h3>
             <div class="members-grid">
                 <!-- Member 1 -->
                 <div class="member-card" data-member="van-phong">
-                    <img src="images/member1.jpg" alt="Vũ Bão" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member1.jpg" alt="Vũ Bão" class="profile-pic">
+                        <img src="images/member1_hover.jpg" alt="Vũ Bão Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Phan Huỳnh Vũ Bão</h3>
                     <div class="member-title">President</div>
                     <p class="member-description">Chủ tịch nhiều kỳ nhất nè các mom.</p>
@@ -569,7 +600,10 @@
 
                 <!-- Member 2 -->
                 <div class="member-card" data-member="john-smith">
-                    <img src="images/member2.jpg" alt="Bùi Ánh Ngọc" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member2.jpg" alt="Bùi Ánh Ngọc" class="profile-pic">
+                        <img src="images/member2_hover.jpg" alt="Bùi Ánh Ngọc Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Bùi Ánh Ngọc</h3>
                     <div class="member-title">Vice President</div>
                     <p class="member-description">Sắp ra trường rồi các mom.</p>
@@ -577,14 +611,20 @@
 
                 <!-- Member 3 -->
                 <div class="member-card" data-member="emily-johnson">
-                    <img src="images/member3.jpg" alt="Trần Quang Đạt" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member3.jpg" alt="Trần Quang Đạt" class="profile-pic">
+                        <img src="images/member3_hover.jpg" alt="Trần Quang Đạt Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Trần Quang Đạt</h3>
                     <div class="member-title">Treasurer</div>
                     <p class="member-description">Kỳ đóng 5 chục nha các mom.</p>
                 </div>
                 <!-- Member 4 -->
                 <div class="member-card" data-member="michael-brown">
-                    <img src="images/member4.jpg" alt="Michael Brown" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member4.jpg" alt="Michael Brown" class="profile-pic">
+                        <img src="images/member4_hover.jpg" alt="Michael Brown Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Mỹ Ngọc</h3>
                     <div class="member-title">Secretary</div>
                     <p class="member-description">Chụp ảnh nha các mom.</p>
@@ -592,14 +632,20 @@
 
                 <!-- Member 5 -->
                 <div class="member-card" data-member="sarah-wilson">
-                    <img src="images/member5.jpg" alt="Sarah Wilson" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member5.jpg" alt="Sarah Wilson" class="profile-pic">
+                        <img src="images/member5_hover.jpg" alt="Sarah Wilson Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Nguyễn Văn Phong</h3>
                     <div class="member-title">Vice President</div>
                     <p class="member-description">Ghệ của bé Khoa nha các mom.</p>
                 </div>
                 <!-- Member 6 -->
                 <div class="member-card" data-member="david-lee">
-                    <img src="images/member6.jpg" alt="Lê Nguyễn Bảo Nghi" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member6.jpg" alt="Lê Nguyễn Bảo Nghi" class="profile-pic">
+                        <img src="images/member6_hover.jpg" alt="Lê Nguyễn Bảo Nghi Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Lê Nguyễn Bảo Nghi</h3>
                     <div class="member-title">Secretary</div>
                     <p class="member-description">Thư ký nhiều kỳ nhất nha các mom.</p>
@@ -613,7 +659,10 @@
             <div class="members-grid">
                 <!-- Member 4 -->
                 <div class="member-card" data-member="michael-brown">
-                    <img src="images/member4.jpg" alt="Michael Brown" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member4.jpg" alt="Michael Brown" class="profile-pic">
+                        <img src="images/member4_hover.jpg" alt="Michael Brown Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Michael Brown</h3>
                     <div class="member-title">Events Coordinator</div>
                     <p class="member-description">Created the signature event series that became a university tradition.</p>
@@ -621,14 +670,20 @@
 
                 <!-- Member 5 -->
                 <div class="member-card" data-member="sarah-wilson">
-                    <img src="images/member5.jpg" alt="Sarah Wilson" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member5.jpg" alt="Sarah Wilson" class="profile-pic">
+                        <img src="images/member5_hover.jpg" alt="Sarah Wilson Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Sarah Wilson</h3>
                     <div class="member-title">Secretary</div>
                     <p class="member-description">Implemented digital systems that improved club communication and documentation.</p>
                 </div>
                 <!-- Member 6 -->
                 <div class="member-card" data-member="david-lee">
-                    <img src="images/member6.jpg" alt="Lê Nguyễn Bảo Nghi" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member6.jpg" alt="Lê Nguyễn Bảo Nghi" class="profile-pic">
+                        <img src="images/member6_hover.jpg" alt="Lê Nguyễn Bảo Nghi Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Lê Nguyễn Bảo Nghi</h3>
                     <div class="member-title">Secretary</div>
                     <p class="member-description">Thư ký nhiều kỳ nhất nha các mom.</p>
@@ -642,7 +697,10 @@
             <div class="members-grid">
                 <!-- Member 6 -->
                 <div class="member-card" data-member="david-lee">
-                    <img src="images/member6.jpg" alt="David Lee" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member6.jpg" alt="David Lee" class="profile-pic">
+                        <img src="images/member6_hover.jpg" alt="David Lee Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">David Lee</h3>
                     <div class="member-title">Marketing Director</div>
                     <p class="member-description">Increased social media following by 300% and created the club's award-winning brand identity.</p>
@@ -650,7 +708,10 @@
 
                 <!-- Member 7 -->
                 <div class="member-card" data-member="lisa-chen">
-                    <img src="images/member7.jpg" alt="Lisa Chen" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member7.jpg" alt="Lisa Chen" class="profile-pic">
+                        <img src="images/member7_hover.jpg" alt="Lisa Chen Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Lisa Chen</h3>
                     <div class="member-title">Research Lead</div>
                     <p class="member-description">Published groundbreaking research that received national recognition in the field.</p>
@@ -664,8 +725,21 @@
             <div class="members-grid">
                 <!-- Member 8 -->
                 <div class="member-card" data-member="robert-taylor">
-                    <img src="images/member8.jpg" alt="Robert Taylor" class="profile-pic">
+                    <div class="profile-pic-container">
+                        <img src="images/member8.jpg" alt="Robert Taylor" class="profile-pic">
+                        <img src="images/member8_hover.jpg" alt="Robert Taylor Hover" class="profile-pic-hover">
+                    </div>
                     <h3 class="member-name">Robert Taylor</h3>
+                    <div class="member-title">Community Outreach</div>
+                    <p class="member-description">Established partnerships with local organizations that benefited thousands of community members.</p>
+                </div>
+                <!-- Member 9 -->
+                <div class="member-card" data-member="vincent-ruph">
+                    <div class="profile-pic-container">
+                        <img src="images/member9.jpg" alt="Vincent Ruph" class="profile-pic">
+                        <img src="images/member9_hover.jpg" alt="Vincent Ruph" class="profile-pic-hover">
+                    </div>
+                    <h3 class="member-name">Vincent Ruph</h3>
                     <div class="member-title">Community Outreach</div>
                     <p class="member-description">Established partnerships with local organizations that benefited thousands of community members.</p>
                 </div>
@@ -704,7 +778,7 @@
 
     <footer>
         <div class="footer-content">
-            <p>© <script>document.write(new Date().getFullYear())</script> University Name. All Rights Reserved.</p>
+            <p>© <script>document.write(new Date().getFullYear())</script> FPTU Can Tho. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -736,7 +810,7 @@
                 background: 'Emily is a senior majoring in Finance and Economics. She has interned at several prestigious financial institutions and brings professional expertise to her role.'
             },
             'michael-brown': {
-                name: 'Mỹ Ngọc (không biết họ)',
+                name: 'Mỹ Ngọc',
                 title: 'Secretary',
                 image: 'images/member4.jpg',
                 achievements: 'Created the signature event series that became a university tradition. Increased event attendance by 150% through strategic marketing.',
@@ -760,7 +834,7 @@
                 background: 'David is a senior studying Graphic Design and Marketing. He has worked with several startups to develop their brand identities.'
             },
             'lisa-chen': {
-                name: 'Lisa Chen',
+                name: 'Mem FEL nào đó 11',
                 title: 'Research Lead',
                 image: 'images/member7.jpg',
                 achievements: 'Published groundbreaking research that received national recognition in the field. Presented findings at three international conferences.',
@@ -768,9 +842,17 @@
                 background: 'Lisa is a PhD candidate in Biochemistry. She has received multiple research grants and has publications in leading scientific journals.'
             },
             'robert-taylor': {
-                name: 'Robert Taylor',
+                name: 'Mem FEL nào đó 2',
                 title: 'Community Outreach',
                 image: 'images/member8.jpg',
+                achievements: 'Established partnerships with local organizations that benefited thousands of community members. Organized volunteer events with 500+ total participants.',
+                contributions: 'Created a sustainable community service program. Developed relationships with 15+ community organizations that continue to partner with the club.',
+                background: 'Robert is a senior majoring in Sociology with a focus on Community Development. He has extensive experience in nonprofit work and community organizing.'
+            },
+            'vincent-ruph': {
+                name: 'Mem FEL nào đó 2',
+                title: 'Community Outreach',
+                image: 'images/member9.jpg',
                 achievements: 'Established partnerships with local organizations that benefited thousands of community members. Organized volunteer events with 500+ total participants.',
                 contributions: 'Created a sustainable community service program. Developed relationships with 15+ community organizations that continue to partner with the club.',
                 background: 'Robert is a senior majoring in Sociology with a focus on Community Development. He has extensive experience in nonprofit work and community organizing.'
